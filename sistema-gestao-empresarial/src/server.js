@@ -1,8 +1,8 @@
 require('dotenv').config();
 const app = require('./app');
-const { sequelize } = require('./models');
+const sequelize = require("./database/config/sequelize.js");
 
-const PORT = process.env.DB_PORT || 3000;
+const PORT = process.env.PORT;
 
 async function assertDatabaseConnectionOk() {
   console.log('Verificando conexão com o banco de dados...');
@@ -17,6 +17,7 @@ async function assertDatabaseConnectionOk() {
 
 async function init() {
   await assertDatabaseConnectionOk();
+  await sequelize.sync();
   
   app.listen(PORT, () => {
     console.log(`Servidor Express rodando na porta ${PORT}`);
