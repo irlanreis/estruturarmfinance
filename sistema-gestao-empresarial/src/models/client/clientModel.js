@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../database/config/sequelize.js');
+const Service = require('../service/serviceModel.js');
 
 const Client = sequelize.define('Client', {
   id: {
@@ -33,7 +34,20 @@ const Client = sequelize.define('Client', {
     defaultValue: 'ativo',
   },
 }, {
+  tableName: 'clients',
   timestamps: true,
+});
+
+Service.belongsToMany(Client, {
+  through: 'client_services',
+  as: 'clientes',
+  foreignKey: 'serviceId',
+});
+
+Client.belongsToMany(Service, {
+  through: 'client_services',
+  as: 'servicos',
+  foreignKey: 'clientId',
 });
 
 module.exports = Client;

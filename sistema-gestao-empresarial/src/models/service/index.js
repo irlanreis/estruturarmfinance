@@ -16,8 +16,8 @@ Entrada.hasMany(Service, { foreignKey: 'entradaId' });
 Service.belongsTo(Entrada, { foreignKey: 'entradaId' });
 
 // Associações entre Contract e Client
-Client.hasMany(Contract, { foreignKey: 'clienteId' });
-Contract.belongsTo(Client, { foreignKey: 'clienteId' });
+Client.hasMany(Contract, { foreignKey: 'clientId' });
+Contract.belongsTo(Client, { foreignKey: 'clientId' });
 
 // Associações entre Contract e Entrada
 Entrada.hasMany(Contract, { foreignKey: 'entradaId' });

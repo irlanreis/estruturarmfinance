@@ -25,7 +25,14 @@ const Service = sequelize.define('Service', {
     allowNull: false
   },
   categoria: {
-    type: DataTypes.STRING,
+    type: DataTypes.ENUM(
+      'tecnologia',
+      'consultoria',
+      'marketing',
+      'social media',
+      'design',
+      'outro'
+    ),
     allowNull: false
   },
   createdBy: {

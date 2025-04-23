@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../database/config/sequelize');
 const Client = require('../client/clientModel');
+const Service = require('../service/serviceModel');
 
 const Contract = sequelize.define('Contract', {
   id: {
@@ -8,16 +9,16 @@ const Contract = sequelize.define('Contract', {
     autoIncrement: true,
     primaryKey: true,
   },
-  clienteId: {
+  clientId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  servicos: {
-    type: DataTypes.JSON, // Exemplo: [{ id: 1, quantidade: 2 }, ...]
     allowNull: false,
   },
   formaPagamento: {
     type: DataTypes.ENUM('boleto', 'cartao', 'pix', 'dinheiro'),
+    allowNull: false,
+  },
+  serviceId: {
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   parcelas: {
@@ -37,7 +38,10 @@ const Contract = sequelize.define('Contract', {
   tableName: 'contracts',
 });
 
-Client.hasMany(Contract, { foreignKey: 'clienteId' });
-Contract.belongsTo(Client, { foreignKey: 'clienteId' })
+Client.hasMany(Contract, { foreignKey: 'clientId' });
+Contract.belongsTo(Client, { foreignKey: 'clientId' })
+
+Service.hasMany(Contract, { foreignKey: 'serviceId' });
+Contract.belongsTo(Service, { foreignKey: 'serviceId' });
 
 module.exports = Contract;
