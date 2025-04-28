@@ -11,25 +11,6 @@ class ClientController {
     }
   }
 
-  async findClientWithServices(req, res) {
-    try {
-      const client = await clientService.findClientWithServices(req.params.id);
-      if (!client) return res.status(httpStatus.NOT_FOUND).json({ error: 'Cliente não encontrado' });
-      res.status(httpStatus.OK).json(client);
-    } catch (err) {
-      res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error: err.message });
-    }
-  }
-
-  async findAllClientWithService(req, res) {
-    try {
-      const clients = await clientService.findAllClientWithService();
-      res.status(httpStatus.OK).json(clients);
-    } catch (err) {
-      res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error: err.message });
-    }
-  }
-
   async findAll(req, res) {
     try {
       const clients = await clientService.findAll(req.query);

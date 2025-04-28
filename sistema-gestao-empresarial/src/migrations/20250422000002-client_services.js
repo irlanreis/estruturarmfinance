@@ -1,7 +1,5 @@
 'use strict';
 
-const { on } = require("supertest/lib/test");
-
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('client_services', {

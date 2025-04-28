@@ -60,10 +60,18 @@ class ServiceService {
   }
 
   async getServicesByCategory(categoria) {
-    return await Service.findAll({
+    if (!categoria) return null;
+  
+    const services = await Service.findAll({
       where: { categoria },
       order: [['nome', 'ASC']]
     });
+  
+    if (!services || services.length === 0) {
+      throw new Error('Nenhum serviço encontrado nesta categoria.');
+    }
+  
+    return services;
   }
 }
 

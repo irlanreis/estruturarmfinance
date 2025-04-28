@@ -17,7 +17,6 @@ async function assertDatabaseConnectionOk() {
 
 async function init() {
   await assertDatabaseConnectionOk();
-  await sequelize.sync({ alter: true });
   
   app.listen(PORT, () => {
     console.log(`Servidor Express rodando na porta ${PORT}`);
