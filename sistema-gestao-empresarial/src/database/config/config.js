@@ -1,13 +1,35 @@
-require('dotenv').config();
+require('dotenv').config(); // Adicione esta linha no topo
 
-module.exports = {
+const config = {
   development: {
-    username: process.env.DB_USER || 'root',
-    password: process.env.DB_PASS || '',
-    database: process.env.DB_NAME || 'gestao_empresarial',
-    host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT || 3306,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD, // Corrigido aqui
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     dialect: 'mysql',
-    logging: console.log,
+    logging: false
   },
+
+  test: {
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD, // Corrigido aqui
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: 'mysql',
+    logging: false
+  },
+
+  production: {
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD, // Corrigido aqui
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: 'mysql',
+    logging: false
+  }
 };
+
+module.exports = config;

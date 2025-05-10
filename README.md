@@ -42,3 +42,4 @@ Sistema desktop para gerenciamento de clientes, contratos, serviços e finanças
 │   ├── .gitignore        # Ignorar arquivos no Git
 │   ├── package.json      # Dependências do backend
 │   ├── package-lock.json # Lockfile do npm
+
